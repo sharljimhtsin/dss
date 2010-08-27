@@ -25,16 +25,16 @@ AuthName "streaming server realm"
 # If not given, the default filename is /Library/QuickTimeStreaming/Config/qtusers for MacOSX
 # If not given, the default filename is /etc/streaming/qtusers for POSIX
 # usage: AuthUserFile <user filename>
-#AuthUserFile /etc/streaming/qtusers
-AuthUserFile /Library/QuickTimeStreaming/Config/qtusers
+AuthUserFile /etc/dss/qtusers
+#AuthUserFile /Library/QuickTimeStreaming/Config/qtusers
 
 # AuthGroupFile: The filename that contains the groups and the 
 # users that belong to each group
 # If not given, the default filename is /Library/QuickTimeStreaming/Config/qtgroups for MacOSX
 # If not given, the default filename is /etc/streaming/qtgroups for POSIX
 # usage: AuthGroupFile  <group filename>
-#AuthGroupFile  /etc/streaming/qtgroups
-AuthGroupFile /Library/QuickTimeStreaming/Config/qtgroups
+AuthGroupFile  /etc/dss/qtgroups
+#AuthGroupFile /Library/QuickTimeStreaming/Config/qtgroups
 
 # require user: The names next to this specify which user 
 # is allowed to access the media in this folder
@@ -60,8 +60,8 @@ require group movie-watchers
 # usage: <Limit [READ|WRITE] ..> ... </Limit>
 <Limit WRITE>
  AuthName "streaming server broadcaster realm"
- AuthUserFile /Library/QuickTimeStreaming/Config/qtbroadcastusers
- AuthGroupFile /Library/QuickTimeStreaming/Config/qtbroadcastgroups
+ AuthUserFile /etc/dss/qtbroadcastusers
+ AuthGroupFile /etc/dss/qtbroadcastgroups
  require group broadcaster
 </Limit>
 

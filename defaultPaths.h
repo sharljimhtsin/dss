@@ -58,11 +58,11 @@
 
 # define DEFAULTPATHS_DIRECTORY_SEPARATOR	"/"
 
-# define DEFAULTPATHS_ETC_DIR			"/etc/streaming/"
+# define DEFAULTPATHS_ETC_DIR			"/etc/dss/"
 # define DEFAULTPATHS_ETC_DIR_OLD		"/etc/"
-# define DEFAULTPATHS_SSM_DIR			"/usr/local/sbin/StreamingServerModules/"
-# define DEFAULTPATHS_LOG_DIR			"/var/streaming/logs/"
-# define DEFAULTPATHS_MOVIES_DIR        "/usr/local/movies/"
+# define DEFAULTPATHS_SSM_DIR			"/var/lib/dss/StreamingServerModules/"
+# define DEFAULTPATHS_LOG_DIR			"/var/lib/dss/logs/"
+# define DEFAULTPATHS_MOVIES_DIR        "/var/lib/dss/movies/"
 # define DEFAULTPATHS_PID_DIR           "/var/run/"
 
 #endif

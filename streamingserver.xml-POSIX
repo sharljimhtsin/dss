@@ -1,5 +1,5 @@
 <?xml version ="1.0"?>
-<!-- This is a sample /etc/streaming/streamingserver.xml file -->
+<!-- This is a sample /etc/dss/streamingserver.xml file -->
 <!-- The Document Type Definition (DTD) for the file -->
 <!DOCTYPE CONFIGURATION [
 <!ELEMENT CONFIGURATION (SERVER, MODULE*)>
@@ -79,7 +79,7 @@
 	<PREF NAME="error_logfile_interval" TYPE="UInt32">7</PREF>
 
 	<!-- error log. A value of 0 means unlimited. -->
-	<PREF NAME="error_logfile_dir">/var/streaming/logs</PREF>
+	<PREF NAME="error_logfile_dir">/var/dss/logs</PREF>
 
 	<!-- Name of the error log file. -->
 	<PREF NAME="error_logfile_name">Error</PREF>
@@ -88,7 +88,7 @@
     <PREF NAME="pid_file">/var/run/DarwinStreamingServer.pid</PREF>
 
 	<!-- Path to the folder containing dynamic loadable server modules -->
-	<PREF NAME="module_folder">/usr/local/sbin/StreamingServerModules</PREF>
+	<PREF NAME="module_folder">/var/lib/dss/StreamingServerModules</PREF>
 
 	<!-- If this is true, the server will allow streaming of files that have invalid hint track references -->
 	<PREF NAME="allow_invalid_hint_track_refs" TYPE="Bool16">false</PREF>
@@ -121,7 +121,7 @@
 	<PREF NAME="bind_ip_addr">0</PREF>
 
 	<!-- Path to the root folder for movies. -->
-	<PREF NAME="movie_folder">/usr/local/movies</PREF>
+	<PREF NAME="movie_folder">/var/lib/dss/movies</PREF>
 
 	<!-- Maximum amount of bandwidth the server is allowed to serve. -->
 	<!-- value is in kilobits/sec. While this limit is exceeded, new client requests. -->
@@ -297,7 +297,7 @@
 	<PREF NAME="request_logfile_size" TYPE="UInt32">10240000</PREF>
 
 	<!-- Path to directory where access logs are stored. -->
-	<PREF NAME="request_logfile_dir">/var/streaming/logs</PREF>
+	<PREF NAME="request_logfile_dir">/var/lib/dss/logs</PREF>
 
 	<!-- Name of the access log file. -->
 	<PREF NAME="request_logfile_name">StreamingServer</PREF>
@@ -371,7 +371,7 @@
     <PREF NAME="mp3_request_logfile_name" >mp3_access</PREF>
     
 	<!-- Path to directory where access logs are stored. -->
-	<PREF NAME="mp3_request_logfile_dir">/var/streaming/logs</PREF>
+	<PREF NAME="mp3_request_logfile_dir">/var/lib/dss/logs</PREF>
 
 	<!-- Either "true" or "false". This toggles -->
 	<!-- mp3 access logging on and off. -->
@@ -410,7 +410,7 @@
 	<!-- Name of the http module log file. -->
 	<PREF NAME="http_logfile_name">Http</PREF>
 	<!-- Path to directory where http module logs are stored. -->
-	<PREF NAME="http_logfile_dir">/var/streaming/logs</PREF>
+	<PREF NAME="http_logfile_dir">/var/lib/dss/logs</PREF>
 	<!-- Maximum allowed size in bytes for the http module log. A -->
 	<!-- value of 0 means unlimited. -->
 	<PREF NAME="http_logfile_size" TYPE="UInt32">256000</PREF>
@@ -525,7 +525,7 @@
 <MODULE NAME="QTSSRelayModule">
 	<!-- Relay preferences file. This file should be in the documented .rcf (Relay config file) -->
 	<!-- format. The Relay will use this to load up all relay streams -->
-	<PREF NAME="relay_prefs_file">/etc/streaming/relayconfig.xml</PREF>
+	<PREF NAME="relay_prefs_file">/etc/lib/dss/relayconfig.xml</PREF>
 
 	<!-- enter this URL into a web browser and get a web page with current stats on -->
 	<!-- your active relays -->
@@ -537,10 +537,10 @@
 	<PREF NAME="modAccess_qtaccessfilename">qtaccess</PREF>
 
 	<!-- The default path and file name for the AccessModule's groups list -->
-	<PREF NAME="modAccess_groupsfilepath">/etc/streaming/qtgroups</PREF>
+	<PREF NAME="modAccess_groupsfilepath">/etc/dss/qtgroups</PREF>
 
 	<!-- The default path and file name for the AccessModule's user list -->
-	<PREF NAME="modAccess_usersfilepath">/etc/streaming/qtusers</PREF>
+	<PREF NAME="modAccess_usersfilepath">/etc/dss/qtusers</PREF>
 </MODULE>
 
 <MODULE NAME="QTSSAdminModule">

@@ -78,7 +78,7 @@ elsif($^O eq "darwin") {
         $defaultConfigPath = "/Library/QuickTimeStreaming/Config/streamingadminserver.conf";
 }
 else {
-	$defaultConfigPath = "/etc/streaming/streamingadminserver.conf";
+	$defaultConfigPath = "/etc/dss/streamingadminserver.conf";
 }
 
 $debug = 0;
@@ -229,8 +229,8 @@ elsif($^O eq "MSWin32") {
 else {
 	%vital = ("port", 1220,
 	  "sslport", 1240,
-	  "root", "/var/streaming/AdminHtml",
-      "plroot", "/var/streaming/playlists/",
+	  "root", "/var/lib/dss/AdminHtml",
+      "plroot", "/var/lib/dss/playlists/",
 	  "server", "DSS 6.0 Admin Server/1.0",
 	  "index_docs", "index.html parse_xml.cgi index.htm index.cgi",
 	  "addtype_html", "text/html",
@@ -245,21 +245,21 @@ else {
 	  "realm", "DSS Admin Server",
 	  "qtssIPAddress", "localhost",
 	  "qtssPort", "554",
-	  "qtssName", "/usr/local/sbin/DarwinStreamingServer",
+	  "qtssName", "/usr/sbin/DarwinStreamingServer",
       "qtssAutoStart", "1",
-	  "logfile", "/var/streaming/logs/streamingadminserver.log",
+	  "logfile", "/var/lib/dss/logs/streamingadminserver.log",
 	  "log", "1",
 	  "logclear", "0",
 	  "logtime", "168",
 	  "messagesfile", "messages",
 	  "gbrowse", "0",
 	  "ssl", "0",
-	  "crtfile", "/etc/streaming/streamingadminserver.pem",
-	  "keyfile", "/etc/streaming/streamingadminserver.pem",
+	  "crtfile", "/etc/dss/streamingadminserver.pem",
+	  "keyfile", "/etc/dss/streamingadminserver.pem",
 	  #"keypasswordfile", "",
-	  "qtssQTPasswd", "/usr/local/bin/qtpasswd",
-	  "qtssPlaylistBroadcaster", "/usr/local/bin/PlaylistBroadcaster",
-	  "qtssMP3Broadcaster", "/usr/local/bin/MP3Broadcaster",
+	  "qtssQTPasswd", "/usr/bin/qtpasswd",
+	  "qtssPlaylistBroadcaster", "/usr/bin/PlaylistBroadcaster",
+	  "qtssMP3Broadcaster", "/usr/bin/MP3Broadcaster",
 	  "helpurl", "http://helpqt.apple.com/dssWebAdminHelpR3/dssWebAdmin.help/DSSHelp.htm",
 	  "tempfileloc", "/tmp",
 	  "qtssAdmin", "streamingadmin",
