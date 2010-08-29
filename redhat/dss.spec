@@ -16,7 +16,7 @@ Prefix: /usr
 
 Requires: perl >= 5.002, awk
 
-#Provides: DarwingStreamingServer
+Provides: DarwingStreamingServer
 
 %description
 Darwin Streaming Server is the Open Source version of Apple's (tm) product
@@ -165,7 +165,7 @@ install sample_h264_1mbit.mp4 %{buildroot}//var/lib/dss/movies
 
 %{_bindir}/createuserstreamingdir
 
-%attr(-,qtss,qtss) /var/lib/dss/*
+%attr(-,qtss,qtss) /var/lib/dss/AdminHtml/*
 
 %{prefix}/share/docs/dss-%{version}/*
 
@@ -179,13 +179,15 @@ install sample_h264_1mbit.mp4 %{buildroot}//var/lib/dss/movies
 %{_mandir}/man8/StreamingLoadTool.8.gz
 %{_mandir}/man8/streamingadminserver.pl.8.gz
 
-%post
+%pre
 #
 # check group and user
 if [ `grep qtss /etc/group` ]; then
-    /sbin/groupadd qtss
-    /sbin/useradd qtss -g qtss -M
+    /sbin/groupadd -r qtss 2> /dev/null
+    /sbin/useradd -r qtss -g qtss -M -c "Darwin Streaming Server" -s /sbin/false -d /var/lib/dss 2> /dev/null
 fi
+
+%post
 #
 # add sysv initscript
 /sbin/chkconfig --add /etc/init.d/dss
@@ -203,26 +205,19 @@ fi
 
 #-------------------------------------------------
 
-#%package samples
-#Summary: Darwin Streaming Server Movie samples
-#Group: Applications/Multimedia
+%package samples
+Summary: Darwin Streaming Server Movie samples
+Group: Applications/Multimedia
+Requires: dss
 
-#%description samples
-#Darwin Streaming Server is the Open Source version of Apple's (tm) product
-#QuickTime Streaming Server. It offers the same features as QTSS, but comes
-#without Apple's support.
+%description samples
+Darwin Streaming Server is the Open Source version of Apple's (tm) product
+QuickTime Streaming Server. It offers the same features as QTSS, but comes
+without Apple's support.
 
-#%files samples
-#%defattr(644,qtss,qtss,-)
-#%{prefix}/var/lib/dss/movies/sample_100kbit.mov
-#%{prefix}/var/lib/dss/movies/sample_300kbit.mov
-#%{prefix}/var/lib/dss/movies/sample_100kbit.mp4
-#%{prefix}/var/lib/dss/movies/sample_300kbit.mp4
-#%{prefix}/var/lib/dss/movies/sample.mp3
-#%{prefix}/var/lib/dss/movies/sample_50kbit.3gp
-#%{prefix}/var/lib/dss/movies/sample_h264_100kbit.mp4
-#%{prefix}/var/lib/dss/movies/sample_h264_300kbit.mp4
-#%{prefix}/var/lib/dss/movies/sample_h264_1mbit.mp4
+%files samples
+%defattr(644,qtss,qtss,-)
+%attr(-,qtss,qtss) /var/lib/dss/movies/*
 
 %changelog
 * Thu Aug 27 2010 Jean-Paul Saman <jean-paul.saman@m2x.nl>
