@@ -5,7 +5,7 @@
 # chkconfig: 2345 90 55
 # description: DSS is the Open Source version of QTSS
 # processname: dss
-# config: /etc/dss.d
+# config: /etc/dss
 # pidfile: /var/run/dss.pid
 
 # Source function library.
