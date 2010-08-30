@@ -31,6 +31,7 @@ without Apple's support.
 %patch2 -p1
 %patch3 -p1
 cp $RPM_SOURCE_DIR/dss dss
+cp $RPM_SOURCE_DIR/dss-web dss-web
 
 %clean
 rm -fr $RPM_BUILD_ROOT
@@ -122,6 +123,7 @@ cp -af WebAdmin/WebAdminHtml/html_en/* %{buildroot}/var/lib/dss/AdminHtml/html_e
 # Startup sysvinit script
 install -d %{buildroot}/etc/init.d
 install -m 755 dss %{buildroot}/etc/init.d/
+install -m 755 dss-web %{buildroot}/etc/init.d/
 
 # Install Documents
 install -d %{buildroot}/usr/share/docs/dss-%{version}
@@ -143,6 +145,7 @@ install sample_h264_1mbit.mp4 %{buildroot}//var/lib/dss/movies
 %files
 %defattr(-,root,root,-)
 /etc/init.d/dss
+/etc/init.d/dss-web
 
 %config %attr(-,qtss,qtss) /etc/dss
 
@@ -200,6 +203,10 @@ install sample_h264_1mbit.mp4 %{buildroot}//var/lib/dss/movies
 # add sysv initscript
 /sbin/chkconfig --add dss
 /sbin/chkconfig --level=2345 dss off
+
+/sbin/chkconfig --add dss-web
+/sbin/chkconfig --level=2345 dss-web off
+
 #
 # default configuration
 if [ ! -f /etc/sysconfig/dss ] ; then
@@ -208,8 +215,15 @@ if [ ! -f /etc/sysconfig/dss ] ; then
 EOF
 fi
 
+if [ ! -f /etc/sysconfig/dss-web ] ; then
+    cat > /etc/sysconfig/dss-web << EOF
+# QTSS Default Web configuration
+EOF
+fi
+
 %postun
 /sbin/chkconfig --del dss
+/sbin/chkconfig --del dss-web
 
 #-------------------------------------------------
 

@@ -1,0 +1,99 @@
+#! /bin/bash
+#
+# dss-web      Start/Stop Darwin Streaming Server
+#
+# chkconfig: 2345 91 54
+# description: DSS is the Open Source version of QTSS
+# processname: dss-web
+# config: /etc/dss
+# pidfile: /var/run/dss-web.pid
+
+# Source function library.
+. /etc/init.d/functions
+. /etc/sysconfig/dss-web
+
+prog=streamingadminserver.pl
+
+start()
+{
+        echo -n $"Starting $prog: "
+        if [ -e /var/lock/$prog ]; then
+            if [ -e /var/run/$prog.pid ] && [ -e /proc/`cat /var/run/$prog.pid` ]; then
+                echo -n $"cannot start $prog: is already running.";
+                failure $"cannot start $prog: is already running.";
+                echo
+                return 1
+            fi
+        fi
+        daemon $prog $DSSARGS
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && touch /var/lock/$prog;
+        return $RETVAL
+}
+
+stop()
+{
+        echo -n $"Stopping $prog: "
+        if [ ! -e /var/lock/$prog ]; then
+            echo -n $"cannot stop $prog: is not running."
+            failure $"cannot stop $prog: is not running."
+            echo
+            return 1;
+        fi
+        killproc $prog
+        RETVAL=$?
+        echo
+        [ $RETVAL -eq 0 ] && rm -f /var/lock/$prog;
+        return $RETVAL
+}
+
+status()
+{
+        echo -n $"Status $prog: "
+	if [ -f /var/lock/$prog -a -f /var/run/$prog.pid ]; then
+		echo -n "pid `cat /var/run/$prog.pid` is running"
+	else
+		echo -n "is stopped"
+	fi
+	echo
+	return 0;
+}
+
+restart()
+{
+        stop
+        start
+}
+
+reload()
+{
+        echo -n $"Reloading $prog daemon configuration: "
+        killproc $prog -HUP
+        RETVAL=$?
+        echo
+        return $RETVAL
+}
+
+case "$1" in
+        start)
+                start
+        ;;
+        stop)
+                stop
+        ;;
+        status)
+                status
+        ;;
+        restart)
+                restart
+        ;;
+        reload)
+                reload
+        ;;
+        *)
+                $echo "Usage: $0 [start|stop|status|restart|reload]"
+                exit 1
+        ;;
+esac
+
