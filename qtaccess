@@ -18,7 +18,7 @@ AuthScheme basic
 # presented to the client (for Basic Authentication only)
 # usage: AuthName <realm>
 # where realm can be a single word or a quoted multi-word string
-AuthName "streaming server realm"
+AuthName "Streaming Server"
 
 # AuthUserFile: The filename that contains the list of users
 # for this access file 
@@ -44,7 +44,8 @@ AuthGroupFile  /etc/dss/qtgroups
 # require valid-user       =>      implies any user that is
 #                                               authenticated is allowed access
 # usage: require user <username1> <username2> ...
-require user johndoe
+require valid-user
+# require user johndoe
 
 # require group: The names of the groups that are allowed
 # access to the media in this folder
