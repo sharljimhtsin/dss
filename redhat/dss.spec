@@ -11,6 +11,7 @@ Source1: dss
 Patch0: dss-6.0.3.patch
 Patch1: dss-hh-20080728-1.patch
 Patch2: 0001-Adjust-configuration-file-paths-for-better-complianc.patch
+Patch3: 0009-WebAdmin-streamingadminserver.conf-default-configura.patch
 BuildRoot: /var/tmp/%{name}
 Prefix: /usr
 
@@ -28,6 +29,7 @@ without Apple's support.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 cp $RPM_SOURCE_DIR/dss dss
 
 %clean
@@ -89,9 +91,9 @@ install -m 644 ./Documentation/man/qtss/qtpasswd.1 %{buildroot}%{_mandir}/man1/
 install -d %{buildroot}/etc/dss
 install -d %{buildroot}/var/lib/dss
 install -d %{buildroot}/var/lib/dss/logs
-install -m 770 -d %{buildroot}/var/lib/dss/playlist
+install -m 770 -d %{buildroot}/var/lib/dss/Playlist
 
-install -m 600 streamingserver.xml %{buildroot}/etc/dss
+install -m 600 streamingserver.xml-POSIX %{buildroot}/etc/dss/streamingserver.xml
 install -m 600 relayconfig.xml-Sample %{buildroot}/etc/dss/relayconfig.xml
 install -m 600 qtaccess %{buildroot}/etc/dss
 install -m 600 qtusers  %{buildroot}/etc/dss
@@ -106,12 +108,16 @@ install -d %{buildroot}/var/lib/dss/AdminHtml/javascripts
 install -d %{buildroot}/var/lib/dss/AdminHtml/logs
 install -d %{buildroot}/var/lib/dss/AdminHtml/settings
 install -d %{buildroot}/var/lib/dss/AdminHtml/status
+install -d %{buildroot}/var/lib/dss/AdminHtml/html_en
 
 install -m 600 WebAdmin/streamingadminserver.pem %{buildroot}/etc/dss
+install -m 600 WebAdmin/streamingadminserver.conf %{buildroot}/etc/dss
 
 install -m 600 WebAdmin/WebAdminHtml/*.{html,cgi,pl} %{buildroot}/var/lib/dss/AdminHtml
 install -m 600 WebAdmin/WebAdminHtml/images/*  %{buildroot}/var/lib/dss/AdminHtml/images
 install -m 600 WebAdmin/WebAdminHtml/includes/* %{buildroot}/var/lib/dss/AdminHtml/includes
+
+cp -af WebAdmin/WebAdminHtml/html_en/* %{buildroot}/var/lib/dss/AdminHtml/html_en
 
 # Startup sysvinit script
 install -d %{buildroot}/etc/init.d
@@ -167,6 +173,8 @@ install sample_h264_1mbit.mp4 %{buildroot}//var/lib/dss/movies
 %{_bindir}/createuserstreamingdir
 
 %dir %attr(-,qtss,qtss) /var/lib/dss/AdminHtml
+%dir %attr(-,qtss,qtss) /var/lib/dss/Playlist
+
 %attr(-,qtss,qtss) /var/lib/dss/AdminHtml/*
 
 %{prefix}/share/docs/dss-%{version}/*
