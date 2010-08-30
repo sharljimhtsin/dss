@@ -50,6 +50,14 @@ stop()
 
 status()
 {
+        echo -n $"Status $prog: "
+	if [ -f /var/lock/$prog -a -f /var/run/$prog.pid ]; then
+		echo -n "pid `cat /var/run/$prog.pid` is running"
+	else
+		echo -n "is stopped"
+	fi
+	echo
+	return 0;
 }
 
 restart()
