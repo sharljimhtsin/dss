@@ -14,7 +14,7 @@ Patch2: 0001-Adjust-configuration-file-paths-for-better-complianc.patch
 BuildRoot: /var/tmp/%{name}
 Prefix: /usr
 
-Requires: perl >= 5.002, awk
+Requires: perl >= 5.002
 
 Provides: DarwingStreamingServer
 
@@ -137,7 +137,8 @@ install sample_h264_1mbit.mp4 %{buildroot}//var/lib/dss/movies
 %files
 %defattr(-,root,root,-)
 /etc/init.d/dss
-%attr(-,qtss,qtss) /etc/dss
+
+%config %attr(-,qtss,qtss) /etc/dss
 
 %{_sbindir}/DarwinStreamingServer
 %{_sbindir}/streamingadminserver.pl
@@ -165,6 +166,7 @@ install sample_h264_1mbit.mp4 %{buildroot}//var/lib/dss/movies
 
 %{_bindir}/createuserstreamingdir
 
+%dir %attr(-,qtss,qtss) /var/lib/dss/AdminHtml
 %attr(-,qtss,qtss) /var/lib/dss/AdminHtml/*
 
 %{prefix}/share/docs/dss-%{version}/*
@@ -182,16 +184,14 @@ install sample_h264_1mbit.mp4 %{buildroot}//var/lib/dss/movies
 %pre
 #
 # check group and user
-if [ `grep qtss /etc/group` ]; then
-    /sbin/groupadd -r qtss 2> /dev/null
-    /sbin/useradd -r qtss -g qtss -M -c "Darwin Streaming Server" -s /sbin/false -d /var/lib/dss 2> /dev/null
-fi
+/usr/sbin/groupadd -r qtss 2> /dev/null || :
+/usr/sbin/useradd -r qtss -g qtss -M -c "Darwin Streaming Server" -s /sbin/false -d /var/lib/dss 2> /dev/null || :
 
 %post
 #
 # add sysv initscript
-/sbin/chkconfig --add /etc/init.d/dss
-/sbin/chkconfig --level=2345 dss
+/sbin/chkconfig --add dss
+/sbin/chkconfig --level=2345 dss off
 #
 # default configuration
 if [ ! -f /etc/sysconfig/dss ] ; then
@@ -201,7 +201,7 @@ EOF
 fi
 
 %postun
-/sbin/chkconfig --del /etc/init.d/dss
+/sbin/chkconfig --del dss
 
 #-------------------------------------------------
 
