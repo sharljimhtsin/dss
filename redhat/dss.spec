@@ -175,6 +175,7 @@ install sample_h264_1mbit.mp4 %{buildroot}//var/lib/dss/movies
 
 %{_bindir}/createuserstreamingdir
 
+%dir %attr(-,qtss,qtss) /var/lib/dss/logs
 %dir %attr(-,qtss,qtss) /var/lib/dss/AdminHtml
 %dir %attr(-,qtss,qtss) /var/lib/dss/Playlist
 
