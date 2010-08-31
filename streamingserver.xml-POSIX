@@ -525,7 +525,7 @@
 <MODULE NAME="QTSSRelayModule">
 	<!-- Relay preferences file. This file should be in the documented .rcf (Relay config file) -->
 	<!-- format. The Relay will use this to load up all relay streams -->
-	<PREF NAME="relay_prefs_file">/etc/lib/dss/relayconfig.xml</PREF>
+	<PREF NAME="relay_prefs_file">/etc/dss/relayconfig.xml</PREF>
 
 	<!-- enter this URL into a web browser and get a web page with current stats on -->
 	<!-- your active relays -->
