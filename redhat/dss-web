@@ -13,6 +13,7 @@
 . /etc/sysconfig/dss-web
 
 prog=streamingadminserver.pl
+DSSARGS?="-c /etc/dss/streamingserver.xml"
 
 start()
 {
