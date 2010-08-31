@@ -2,7 +2,7 @@ Summary: Darwin Streaming Server
 Vendor: M2X BV
 Name: dss
 Version: 6.0.3
-Release: 1
+Release: 2
 License: Apple Public Source License
 URL: http://dss.macosforge.org/
 Group: Applications/Multimedia
@@ -15,7 +15,7 @@ Patch3: 0009-WebAdmin-streamingadminserver.conf-default-configura.patch
 BuildRoot: /var/tmp/%{name}
 Prefix: /usr
 
-Requires: perl >= 5.002
+Requires: perl >= 5.002, perl-Net-SSLeay
 
 Provides: DarwingStreamingServer
 
