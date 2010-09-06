@@ -96,7 +96,7 @@ install -m 770 -d %{buildroot}/var/lib/dss/Playlist
 
 install -m 600 streamingserver.xml-POSIX %{buildroot}/etc/dss/streamingserver.xml
 install -m 600 relayconfig.xml-Sample %{buildroot}/etc/dss/relayconfig.xml
-install -m 600 qtaccess %{buildroot}/etc/dss
+#install -m 600 qtaccess %{buildroot}/etc/dss
 install -m 600 qtusers  %{buildroot}/etc/dss
 install -m 600 qtgroups %{buildroot}/etc/dss
 install -m 600 StreamingLoadTool/streamingloadtool.conf %{buildroot}/etc/dss
@@ -132,6 +132,7 @@ install Documentation/*.{pdf,txt,rtf,html} %{buildroot}/usr/share/docs/dss-%{ver
 # Install sample movies
 install -m 755 -d %{buildroot}/var/lib/dss/movies
 
+install -m 600 qtaccess %{buildroot}/var/lib/dss/movies
 install sample_100kbit.mov %{buildroot}/var/lib/dss/movies
 install sample_300kbit.mov %{buildroot}/var/lib/dss/movies
 install sample_100kbit.mp4 %{buildroot}/var/lib/dss/movies
