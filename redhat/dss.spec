@@ -100,6 +100,7 @@ install -m 600 relayconfig.xml-Sample %{buildroot}/etc/dss/relayconfig.xml
 install -m 600 qtusers  %{buildroot}/etc/dss
 install -m 600 qtgroups %{buildroot}/etc/dss
 install -m 600 StreamingLoadTool/streamingloadtool.conf %{buildroot}/etc/dss
+install -m 600 StreamingProxy.tproj/streamingproxy.conf %{buildroot}/etc/dss
 
 # Install WebAdminHtml
 install -d %{buildroot}/var/lib/dss/AdminHtml
@@ -128,6 +129,7 @@ install -m 755 dss-web %{buildroot}/etc/init.d/
 # Install Documents
 install -d %{buildroot}/usr/share/doc/dss-%{version}
 install Documentation/*.{pdf,txt,rtf,html} %{buildroot}/usr/share/doc/dss-%{version}
+install StreamingProxy.tproj/StreamingProxy.html %{buildroot}/usr/share/doc/dss-%{version}
 
 # Install sample movies
 install -m 755 -d %{buildroot}/var/lib/dss/movies
