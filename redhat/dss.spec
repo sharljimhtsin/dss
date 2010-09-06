@@ -126,8 +126,8 @@ install -m 755 dss %{buildroot}/etc/init.d/
 install -m 755 dss-web %{buildroot}/etc/init.d/
 
 # Install Documents
-install -d %{buildroot}/usr/share/docs/dss-%{version}
-install Documentation/*.{pdf,txt,rtf,html} %{buildroot}/usr/share/docs/dss-%{version}
+install -d %{buildroot}/usr/share/doc/dss-%{version}
+install Documentation/*.{pdf,txt,rtf,html} %{buildroot}/usr/share/doc/dss-%{version}
 
 # Install sample movies
 install -m 755 -d %{buildroot}/var/lib/dss/movies
@@ -182,7 +182,7 @@ install sample_h264_1mbit.mp4 %{buildroot}//var/lib/dss/movies
 
 %attr(-,qtss,qtss) /var/lib/dss/AdminHtml/*
 
-%{prefix}/share/docs/dss-%{version}/*
+%{prefix}/share/doc/dss-%{version}/*
 
 %{_mandir}/man1/broadcasterctl.1.gz
 %{_mandir}/man1/PlaylistBroadcaster.1.gz
