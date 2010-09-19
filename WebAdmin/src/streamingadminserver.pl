@@ -230,7 +230,7 @@ else {
 	%vital = ("port", 1220,
 	  "sslport", 1240,
 	  "root", "/var/lib/dss/AdminHtml",
-      "plroot", "/var/lib/dss/playlists/",
+      "plroot", "/var/lib/dss/Playlists/",
 	  "server", "DSS 6.0 Admin Server/1.0",
 	  "index_docs", "index.html parse_xml.cgi index.htm index.cgi",
 	  "addtype_html", "text/html",
