@@ -89,9 +89,9 @@ case $PLAT in
 	Linux.i686 | \
 	Linux.x86_64 )
         echo "Configuring for the "$OSNAME" "$HARDWARENAME" platform"
-		CPLUS=gcc
-		CCOMP=gcc
-		LINKER='gcc'
+		CPLUS=g++-4.4
+		CCOMP=gcc-4.4
+		LINKER='gcc-4.4'
  		MAKE=make
  		
 		if [ "$PLAT" = "Linux.x86_64" ]; then
